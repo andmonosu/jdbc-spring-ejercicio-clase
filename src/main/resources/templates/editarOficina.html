@@ -54,6 +54,25 @@
         </div>
     </form>
     <br>
+    <h2>Listado de empleados</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Codigo Empleado</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Puesto</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="empleado : ${empleados}">
+            <th scope="row" th:text="${empleado.getCodigoEmpleado()}"></th>
+            <td th:text="${empleado.getNombre()}"></td>
+            <td th:text="${empleado.getApellido1() + ' ' + empleado.getApellido2()}"></td>
+            <td th:text="${empleado.getPuesto()}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 </body>
