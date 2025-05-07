@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 th:text="${titulo}">Prueba</h1>
+    <table>
+      <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido 1</th>
+                <th>Apellido 2</th>
+                <th>Email</th>
+                <th>Puesto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each=" empleado : ${empleados}">
+                <td th:text="${empleado.getCodigo_empleado()}">ID</td>
+                <td th:text="${empleado.getNombre()}">Nombre</td>
+                <td th:text="${empleado.getApellido1()}">Apellido 1</td>
+                <td th:text="${empleado.getApellido2()}">Apellido 2</td>
+                <td th:text="${empleado.getEmail()}">Email</td>
+                <td th:text="${empleado.getPuesto()}">Puesto</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

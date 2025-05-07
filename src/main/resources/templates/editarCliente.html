@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org"> <!-- Añadir el namespace de Thymeleaf -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario Cliente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="mb-4">Formulario Cliente</h2>
+    <!-- Vincular el formulario con el objeto 'cliente' del modelo -->
+    <form th:object="${cliente}" method="post"> <!-- Se asume un método POST para el envío -->
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="codigo_cliente" class="form-label">Código Cliente</label>
+                <!-- Usar th:field para enlazar con el atributo del objeto -->
+                <input type="number" class="form-control" id="codigo_cliente" th:field="*{codigoCliente}" placeholder="Código Cliente">
+            </div>
+            <div class="col-md-6">
+                <label for="nombre_cliente" class="form-label">Nombre Cliente</label>
+                <input type="text" class="form-control" id="nombre_cliente" th:field="*{nombreCliente}" placeholder="Nombre Cliente">
+            </div>
+            <div class="col-md-6">
+                <label for="nombre_contacto" class="form-label">Nombre Contacto</label>
+                <input type="text" class="form-control" id="nombre_contacto" th:field="*{nombreContacto}" placeholder="Nombre Contacto">
+            </div>
+            <div class="col-md-6">
+                <label for="apellido_contacto" class="form-label">Apellido Contacto</label>
+                <input type="text" class="form-control" id="apellido_contacto" th:field="*{apellidoContacto}" placeholder="Apellido Contacto">
+            </div>
+            <div class="col-md-6">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="telefono" th:field="*{telefono}" placeholder="Teléfono">
+            </div>
+            <div class="col-md-6">
+                <label for="fax" class="form-label">Fax</label>
+                <input type="tel" class="form-control" id="fax" th:field="*{fax}" placeholder="Fax">
+            </div>
+            <div class="col-md-6">
+                <label for="linea_direccion1" class="form-label">Línea Dirección 1</label>
+                <input type="text" class="form-control" id="linea_direccion1" th:field="*{lineaDireccion1}" placeholder="Línea Dirección 1">
+            </div>
+            <div class="col-md-6">
+                <label for="linea_direccion2" class="form-label">Línea Dirección 2</label>
+                <input type="text" class="form-control" id="linea_direccion2" th:field="*{lineaDireccion2}" placeholder="Línea Dirección 2">
+            </div>
+            <div class="col-md-4">
+                <label for="ciudad" class="form-label">Ciudad</label>
+                <input type="text" class="form-control" id="ciudad" th:field="*{ciudad}" placeholder="Ciudad">
+            </div>
+            <div class="col-md-4">
+                <label for="region" class="form-label">Región</label>
+                <input type="text" class="form-control" id="region" th:field="*{region}" placeholder="Región">
+            </div>
+            <div class="col-md-4">
+                <label for="pais" class="form-label">País</label>
+                <input type="text" class="form-control" id="pais" th:field="*{pais}" placeholder="País">
+            </div>
+            <div class="col-md-6">
+                <label for="codigo_postal" class="form-label">Código Postal</label>
+                <input type="text" class="form-control" id="codigo_postal" th:field="*{codigoPostal}" placeholder="Código Postal">
+            </div>
+            <div class="col-md-6">
+                <label for="codigo_empleado_rep_ventas" class="form-label">Representante de Ventas</label>
+                <select name="codigo_empleado_rep_ventas" id="codigo_empleado_rep_ventas" class="form-select">
+                    <option
+                            th:each="empleado : ${empleados}"
+                            th:text="${empleado.getNombreCompleto()}"
+                            th:value="${empleado.getCodigoEmpleado()}"
+                            th:selected="${cliente.getCodigoEmpleadoRepVentas() == empleado.getCodigoEmpleado()}"></option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="limite_credito" class="form-label">Límite Crédito</label>
+                <input type="number" step="0.01" class="form-control" id="limite_credito" th:field="*{limiteCredito}" placeholder="Límite Crédito">
+            </div>
+        </div>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="reset" class="btn btn-secondary ms-2">Limpiar</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
