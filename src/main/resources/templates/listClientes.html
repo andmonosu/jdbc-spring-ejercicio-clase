@@ -17,8 +17,8 @@
         </thead>
         <tbody>
             <tr th:each=" cliente : ${clientes}">
-                <td th:text="${cliente.getCodigo_cliente()}">ID</td>
-                <td th:text="${cliente.getNombre_cliente()}">Nombre</td>
+                <td th:text="${cliente.getCodigoCliente()}">ID</td>
+                <td th:text="${cliente.getNombreCliente()}">Nombre</td>
                 <td th:text="${cliente.getTelefono()}">Teléfono</td>
                 <td th:text="${cliente.getCiudad()}">Ciudad</td>
             </tr>

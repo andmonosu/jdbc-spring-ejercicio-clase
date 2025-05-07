@@ -19,7 +19,7 @@
         </thead>
         <tbody>
             <tr th:each=" empleado : ${empleados}">
-                <td th:text="${empleado.getCodigo_empleado()}">ID</td>
+                <td th:text="${empleado.getCodigoEmpleado()}">ID</td>
                 <td th:text="${empleado.getNombre()}">Nombre</td>
                 <td th:text="${empleado.getApellido1()}">Apellido 1</td>
                 <td th:text="${empleado.getApellido2()}">Apellido 2</td>

@@ -26,6 +26,7 @@ public class OficinaController {
     @GetMapping("/oficinas/{id}")
     public String showOficina(Model model, @PathVariable String id) {
         model.addAttribute("oficina", oficinaService.findById(id));
+        model.addAttribute("titulo", "Lista de Oficinas");
         return "editarOficina";
     }
 }
