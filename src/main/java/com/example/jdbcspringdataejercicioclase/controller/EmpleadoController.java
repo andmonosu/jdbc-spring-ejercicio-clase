@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,5 +42,11 @@ public class EmpleadoController {
         model.addAttribute("oficinaEmpleado", oficina);
         model.addAttribute("empleados", empleadoService.findByCodigoOficina(empleado.getCodigoOficina()));
         return "/editarEmpleados";
+    }
+
+    @GetMapping("/empleados/oficina/{id}")
+    @ResponseBody
+    public List<Empleado> findByOficinaId(@PathVariable String id) {
+        return (List<Empleado>) empleadoService.findByCodigoOficina(id);
     }
 }

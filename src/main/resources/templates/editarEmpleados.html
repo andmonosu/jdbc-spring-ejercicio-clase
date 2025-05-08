@@ -42,7 +42,8 @@
                             th:each="oficina : ${oficinas}"
                             th:text="${oficina.getCodigoOficina()}"
                             th:value="${oficina.getCodigoOficina()}"
-                            th:selected="${empleado.getCodigoOficina() == oficina.getCodigoOficina()}">
+                            th:selected="${empleado.getCodigoOficina() == oficina.getCodigoOficina()}"
+                    >
                     </option>
                 </select>
             </div>
@@ -106,6 +107,28 @@
         </div>
     </form>
 </div>
-
 </body>
+<script>
+    document.getElementById('codigo_oficina_empleado').addEventListener('change', function() {
+        const codigoOficina = this.value;
+        const codigoJefe = document.getElementById('codigo_jefe');
+
+        // Clear previous options
+        codigoJefe.innerHTML = '<option value="">-- Selecciona un empleado --</option>';
+
+        if (codigoOficina) {
+            fetch(`/empleados/oficina/${codigoOficina}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(empleado => {
+                        const option = document.createElement('option');
+                        option.value = empleado.codigo_empleado;
+                        option.textContent = `${empleado.nombre} ${empleado.apellido1} ${empleado.apellido2}`;
+                        codigoJefe.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching empleados:', error));
+        }
+    });
+</script>
 </html>
